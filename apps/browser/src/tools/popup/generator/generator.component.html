@@ -167,16 +167,28 @@
           />
         </div>
         <div class="box-content-row" role="listbox" aria-labelledby="wordListLanguageHeading">
-          <label id="wordListLanguageHeading">{{ "language" | i18n }}</label>
+          <!-- <label id="wordListLanguageHeading">{{ "wordListLanguage" | i18n }}</label> -->
+          <label id="wordListLanguageHeading">{{ "wordListLanguage" | i18n }}</label>
           <select
             id="WordListLanguageDropdown"
             name="WordListLanguage"
             [(ngModel)]="passwordOptions.language"
             (change)="savePasswordOptions()"
           >
-            <option *ngFor="let o of passphraseLanguageOptions" [ngValue]="o.value" role="option">
-              {{ o.name }}
-            </option>
+            <ng-container *ngFor="let o of passphraseLanguageOptions">
+              <option
+                [ngValue]="o.value"
+                role="option"
+                *ngIf="o.value === passwordOptions.language; else notSelected"
+              >
+                {{ o.name }}
+              </option>
+              <ng-template #notSelected>
+                <option [ngValue]="o.value" role="option">
+                  {{ o.name }}
+                </option>
+              </ng-template>
+            </ng-container>
           </select>
         </div>
       </div>

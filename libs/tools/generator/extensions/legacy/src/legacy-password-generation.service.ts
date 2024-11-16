@@ -310,6 +310,7 @@ export class LegacyPasswordGenerationService implements PasswordGenerationServic
         wordSeparator: options.wordSeparator,
         capitalize: options.capitalize,
         includeNumber: options.includeNumber,
+        language: options.language,
       },
       policyUpdated: false,
     };
@@ -333,6 +334,7 @@ export class LegacyPasswordGenerationService implements PasswordGenerationServic
       wordSeparator: options.passphrase.wordSeparator,
       capitalize: options.passphrase.capitalize,
       includeNumber: options.passphrase.includeNumber,
+      language: options.passphrase.language,
       policyUpdated: options.policyUpdated,
     };
   }
