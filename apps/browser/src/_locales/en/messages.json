@@ -515,6 +515,9 @@
   "includeNumber": {
     "message": "Include number"
   },
+  "wordListLanguage": {
+    "message": "Wordlist language"
+  },
   "minNumbers": {
     "message": "Minimum numbers"
   },
