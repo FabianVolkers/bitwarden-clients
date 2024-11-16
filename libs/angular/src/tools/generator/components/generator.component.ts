@@ -8,6 +8,7 @@ import { AccountService } from "@bitwarden/common/auth/abstractions/account.serv
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/platform/abstractions/log.service";
 import { PlatformUtilsService } from "@bitwarden/common/platform/abstractions/platform-utils.service";
+import { PassphraseLanguageOptions } from "@bitwarden/common/platform/misc/wordlist";
 import { ToastService } from "@bitwarden/components";
 import {
   GeneratorType,
@@ -40,6 +41,7 @@ export class GeneratorComponent implements OnInit, OnDestroy {
   forwardOptions: EmailForwarderOptions[];
   usernameOptions: UsernameGeneratorOptions = { website: null };
   passwordOptions: PasswordGeneratorOptions = {};
+  passphraseLanguageOptions: PassphraseLanguageOptions[];
   username = "-";
   password = "-";
   showOptions = false;
@@ -117,6 +119,11 @@ export class GeneratorComponent implements OnInit, OnDestroy {
       { name: "SimpleLogin", value: "simplelogin", validForSelfHosted: true },
       { name: "Forward Email", value: "forwardemail", validForSelfHosted: true },
     ].sort((a, b) => a.name.localeCompare(b.name));
+
+    this.passphraseLanguageOptions = [
+      { name: "English", value: "en" },
+      { name: "Deutsch", value: "de" },
+    ];
 
     this._password.pipe(debounceTime(250)).subscribe((password) => {
       ngZone.run(() => {

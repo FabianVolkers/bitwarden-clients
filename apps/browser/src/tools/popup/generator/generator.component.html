@@ -166,6 +166,19 @@
             [disabled]="enforcedPasswordPolicyOptions?.includeNumber"
           />
         </div>
+        <div class="box-content-row" role="listbox" aria-labelledby="wordListLanguageHeading">
+          <label id="wordListLanguageHeading">{{ "language" | i18n }}</label>
+          <select
+            id="WordListLanguageDropdown"
+            name="WordListLanguage"
+            [(ngModel)]="passwordOptions.language"
+            (change)="savePasswordOptions()"
+          >
+            <option *ngFor="let o of passphraseLanguageOptions" [ngValue]="o.value" role="option">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
     <ng-container *ngIf="passwordOptions.type === 'password'">
