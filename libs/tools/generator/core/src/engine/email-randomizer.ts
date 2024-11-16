@@ -1,4 +1,4 @@
-import { EFFLongWordList } from "@bitwarden/common/platform/misc/wordlist";
+import { enabledWordLists } from "@bitwarden/common/platform/misc/wordlist";
 import { GenerationRequest } from "@bitwarden/common/tools/types";
 
 import {
@@ -97,7 +97,7 @@ export class EmailRandomizer
       return null;
     }
 
-    const wordList = options?.words ?? EFFLongWordList;
+    const wordList = options?.words ?? enabledWordLists.en;
     const words = [];
     for (let i = 0; i < numberOfWords; i++) {
       // camelCase the words for legibility

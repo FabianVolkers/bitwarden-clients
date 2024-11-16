@@ -29,7 +29,7 @@ import { StateService } from "../../common/src/platform/abstractions/state.servi
 import { KeySuffixOptions, HashPurpose } from "../../common/src/platform/enums";
 import { convertValues } from "../../common/src/platform/misc/convert-values";
 import { Utils } from "../../common/src/platform/misc/utils";
-import { EFFLongWordList } from "../../common/src/platform/misc/wordlist";
+import { enabledWordLists } from "../../common/src/platform/misc/wordlist";
 import { EncString, EncryptedString } from "../../common/src/platform/models/domain/enc-string";
 import { SymmetricCryptoKey } from "../../common/src/platform/models/domain/symmetric-crypto-key";
 import { USER_ENCRYPTED_ORGANIZATION_KEYS } from "../../common/src/platform/services/key-state/org-keys.state";
@@ -757,7 +757,7 @@ export class DefaultKeyService implements KeyServiceAbstraction {
   }
 
   private async hashPhrase(hash: Uint8Array, minimumEntropy = 64) {
-    const entropyPerWord = Math.log(EFFLongWordList.length) / Math.log(2);
+    const entropyPerWord = Math.log(enabledWordLists.en.length) / Math.log(2);
     let numWords = Math.ceil(minimumEntropy / entropyPerWord);
 
     const hashArr = Array.from(new Uint8Array(hash));
@@ -769,9 +769,9 @@ export class DefaultKeyService implements KeyServiceAbstraction {
     const phrase: string[] = [];
     let hashNumber = bigInt.fromArray(hashArr, 256);
     while (numWords--) {
-      const remainder = hashNumber.mod(EFFLongWordList.length);
-      hashNumber = hashNumber.divide(EFFLongWordList.length);
-      phrase.push(EFFLongWordList[remainder as any]);
+      const remainder = hashNumber.mod(enabledWordLists.en.length);
+      hashNumber = hashNumber.divide(enabledWordLists.en.length);
+      phrase.push(enabledWordLists.en[remainder as any]);
     }
     return phrase;
   }

@@ -1,4 +1,4 @@
-import { EFFLongWordList } from "@bitwarden/common/platform/misc/wordlist";
+import { enabledWordLists } from "@bitwarden/common/platform/misc/wordlist";
 import { GenerationRequest } from "@bitwarden/common/tools/types";
 
 import { CredentialGenerator, EffUsernameGenerationOptions, GeneratedCredential } from "../types";
@@ -31,7 +31,7 @@ export class UsernameRandomizer implements CredentialGenerator<EffUsernameGenera
       selectCase = (_: number) => true;
     }
 
-    const wordList = request?.words ?? EFFLongWordList;
+    const wordList = request?.words ?? enabledWordLists.en;
     const parts = [];
     for (let i = 0; i < numberOfWords; i++) {
       const word = await this.random.pickWord(wordList, { titleCase: selectCase(i) });
