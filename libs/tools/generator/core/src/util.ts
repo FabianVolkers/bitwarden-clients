@@ -129,6 +129,7 @@ export function optionsToEffWordListRequest(options: PassphraseGenerationOptions
     capitalize: options.capitalize ?? DefaultPassphraseGenerationOptions.capitalize,
     number: options.includeNumber ?? DefaultPassphraseGenerationOptions.includeNumber,
     separator: options.wordSeparator ?? DefaultPassphraseGenerationOptions.wordSeparator,
+    language: options.language ?? DefaultPassphraseGenerationOptions.language,
   };
 
   return request;

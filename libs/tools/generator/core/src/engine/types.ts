@@ -50,6 +50,9 @@ export type EffWordListRequest = {
 
   /** Whether or not the words should be capitalized */
   capitalize: boolean;
+
+  /** Language of the words used in the passphrase */
+  language: string;
 };
 
 /** request random username drawn from a word list */

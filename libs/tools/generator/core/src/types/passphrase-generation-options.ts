@@ -23,4 +23,9 @@ export type PassphraseGenerationOptions = {
    * This value defaults to `false`.
    */
   includeNumber?: boolean;
+
+  /** Language of the words used for generating the passpharase
+   * Defaults to `en`
+   */
+  language?: string;
 };

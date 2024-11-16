@@ -7,4 +7,5 @@ export const DefaultPassphraseGenerationOptions: Partial<PassphraseGenerationOpt
     wordSeparator: "-",
     capitalize: false,
     includeNumber: false,
+    language: "en",
   });
