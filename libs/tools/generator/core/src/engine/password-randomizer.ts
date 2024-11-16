@@ -1,4 +1,4 @@
-import { EFFLongWordList } from "@bitwarden/common/platform/misc/wordlist";
+import { getWordList } from "@bitwarden/common/platform/misc/wordlist";
 import { GenerationRequest } from "@bitwarden/common/tools/types";
 
 import {
@@ -48,6 +48,7 @@ export class PasswordRandomizer
   async randomEffLongWords(request: EffWordListRequest) {
     // select which word gets the number, if any
     let luckyNumber = -1;
+    const sourceWordList = await getWordList(request.language);
     if (request.number) {
       luckyNumber = await this.randomizer.uniform(0, request.numberOfWords - 1);
     }
@@ -55,7 +56,7 @@ export class PasswordRandomizer
     // generate the passphrase
     const wordList = new Array(request.numberOfWords);
     for (let i = 0; i < request.numberOfWords; i++) {
-      const word = await this.randomizer.pickWord(EFFLongWordList, {
+      const word = await this.randomizer.pickWord(sourceWordList, {
         titleCase: request.capitalize,
         number: i === luckyNumber,
       });
